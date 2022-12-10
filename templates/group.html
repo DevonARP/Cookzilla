@@ -1,0 +1,30 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<a href="/create">Create a group</a>
+<br>
+<a href="/join">Join a group</a>
+<br>
+<a href="/event">Create an event</a>
+<br>
+<a href="/eventlist">List out events for details</a>
+<br>
+<a href="/rsvp">RSVP to an event or update response</a>
+<br>
+<a href="/eventimages">Post images for an event</a>
+<br>
+<a href="/removee">Remove group or it's events</a>
+<br>
+<a href="/leave">Leave a group</a>
+<br>
+<a href="/logout">Logout</a>
+
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</body>
+

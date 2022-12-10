@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+<body>
+    <form action="/add_review" method="GET">
+
+        Pick Group
+        {% for line in sdata %}
+        <br>
+        <input type="radio" name="review" value="{{line.recipeID}}" required>Name = {{line.title}} , Creator = {{line.postedBy}}</input>
+        {% endfor %}
+        </br>
+        <input type="text" name = "rtitle" placeholder="Review Title" required/></br>
+        <input type="text" name = "rdesc" placeholder="Description" required/></br>
+        <input type="number" min="1" max="5" name = "stars" placeholder="stars" required/></br>
+        
+        <input type="submit" value="Add review">
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+        </form>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+</head>
+<body>
+
+	<h1>Welcome {{username}}</h1> 
+	<br>
+Which recipe do you want to add a tag for?
+<br>
+
+<form action="/add_tag" method="GET">
+
+
+{% for line in redata %}
+<input type="radio" name="recipe" value="{{line.recipeID}}" required>{{line.title}}</input>
+	<br>
+{% endfor %}
+<br>
+<input type="text" name = "tag" placeholder="tags" required/></br>
+<br>
+<input type="submit" value="Submit">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

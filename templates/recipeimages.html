@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+
+<form action="/recipeimages2" method="GET">
+
+	Select recipe to upload an image of
+	<br>
+	{% for line in redata %}
+	<input type="radio" name="recipe" value="{{line.recipeID}}" required>{{line.title}}</input>
+		<br>
+	{% endfor %}
+	<br>
+<input type="submit" value="Upload">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+</body>
+
+
+</html>

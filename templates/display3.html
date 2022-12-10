@@ -1,0 +1,54 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here is the event info:
+
+<table>
+    <th>Name</th>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Description</th>
+
+{% for line in edata %}
+	<tr>
+		<td>{{line.eName}}</td>
+        <td>{{line.eID}}</td>
+        <td>{{line.eDate}}</td>
+        <td>{{line.eDesc}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+Here are the people who RSVP:
+
+<table>
+	<th>Name</th>
+
+{% for line in rdata %}
+	<tr>
+		<td>{{line.userName}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+	{% for line in pdata %}
+		<img src="{{line.pictureURL}}" alt="User Image">
+	{% endfor %}
+	<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

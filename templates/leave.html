@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+    <form action="/leave_group" method="GET">
+
+        Pick Group
+        {% for line in sdata %}
+        <br>
+        <input type="radio" name="group" value="{{line.gName}},{{line.gCreator}}" required>Name = {{line.gName}} , Creator = {{line.gCreator}}</input>
+        {% endfor %}
+        </br>
+        
+        <input type="submit" value="Leave Group">
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+        </form>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

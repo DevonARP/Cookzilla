@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Which group do you want to edit?
+<br>
+
+<form action="/group_edit" method="GET">
+
+
+{% for line in sdata %}
+<input type="radio" name="group" value="{{line.gName}}" required>{{line.gName}}</input>
+	<br>
+{% endfor %}
+<br>
+
+<label for="type">Choose an attribute to edit or remove:</label>
+<select name="type" id="type">
+  <option value="group">group</option>
+  <option value="event">event</option>
+</select>
+<br>
+<input type="submit" value="Edit group">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Which recipe do you want to edit?
+<br>
+
+<form action="/recipe_edit" method="GET">
+
+
+{% for line in sdata %}
+<input type="radio" name="recipe" value="{{line.recipeID}}" required>{{line.title}}</input>
+	<br>
+{% endfor %}
+<br>
+
+<label for="type">Choose an attribute to edit or remove:</label>
+<select name="type" id="type">
+  <option value="tag">tag</option>
+  <option value="image">image</option>
+  <option value="ingredient">ingredient</option>
+  <option value="step">step</option>
+  <option value="recipe">recipe</option>
+</select>
+<br>
+<input type="submit" value="Remove">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

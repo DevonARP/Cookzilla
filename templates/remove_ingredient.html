@@ -1,0 +1,33 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Which ingredient do you want to remove?
+<br>
+
+<form action="/ingredient_edit" method="GET">
+
+
+{% for line in sdata %}
+<input type="radio" name="ingred" value="{{line.iName}}" required>{{line.iName}}</input>
+	<br>
+{% endfor %}
+<br>
+
+<input type="submit" value="Remove Ingredient">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

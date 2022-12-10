@@ -1,0 +1,49 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Which event do you want to RSVP or update?
+<br>
+
+<form action="/add_rsvp" method="GET">
+
+	<table>
+        <th>Name</th>
+		<th>ID</th>
+        <th>Date</th>
+        <th>Description</th>
+
+	{% for line in rdata %}
+        <tr>
+            <td><input type="radio" name="id" value="{{line.eID}}" required>{{line.eName}}</input></td>
+			<td>{{line.eID}}</td>
+            <td>{{line.eDate}}</td>
+            <td>{{line.eDesc}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+<br>
+
+<label for="rsvp">Yes or No?:</label>
+<select name="rsvp" id="rsvp">
+  <option value=1>Yes</option>
+  <option value=0>No</option>
+</select>
+
+<input type="submit" value="RSVP">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Which event do you want to remove?
+<br>
+
+<form action="/event_edit" method="GET">
+
+	<table>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Date</th>
+
+	{% for line in sdata %}
+	<tr>
+		<td><input type="radio" name="name" value="{{line.eID}}" required>{{line.eName}}</input></td>
+		<td>{{line.eDesc}}</td>
+        <td>{{line.eDate}}</td>	</tr>
+	{% endfor %}
+</table>
+
+<input type="submit" value="Remove Event">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

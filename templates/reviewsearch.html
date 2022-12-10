@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	Which recipe do you want to see the reviews of?
+    <form action="/displayreviews" method="GET">
+
+        <br>
+        {% for line in sdata %}
+        <input type="radio" name="recipe" value="{{line.recipeID}}" required>Name = {{line.title}} , Created by = {{line.postedBy}}</input>
+            <br>
+        {% endfor %}
+        <br>
+    <input type="submit" value="Submit">
+    </form>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

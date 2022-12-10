@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+
+<form action="/display" method="GET">
+	<h1>Welcome {{username}}</h1> 
+
+    <style type="text/css">
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+    
+    Here are your results:
+    
+    <table>
+        <th>Recipe</th>
+        <th>ID</th>
+        <th>Posted By</th>
+    
+    {% for line in info %}
+        <tr>
+            <td><input type="radio" name="id" value="{{line.recipeID}}" required>{{line.title}}</input></td>
+            <td>{{line.recipeID}}</td>
+            <td>{{line.postedBy}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <input type="submit" value="Display recipe">
+    {% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

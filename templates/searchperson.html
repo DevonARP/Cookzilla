@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+    Searching for other users
+<form action="/searching2" method="GET">
+	<input type="text" name = "filter" placeholder="search" required/> </br>
+	<input type="submit" value = Search />
+	{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

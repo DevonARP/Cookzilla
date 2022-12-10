@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here is the recipe info:
+
+<table>
+	<th>Username</th>
+    <th>first name</th>
+	<th>last name</th>
+    <th>email</th>
+    <th>profile</th>
+
+{% for line in redata %}
+	<tr>
+		<td>{{line.userName}}</td>
+        <td>{{line.fName}}</td>
+        <td>{{line.lName}}</td>
+        <td>{{line.email}}</td>
+        <th>{{line.profile}}</th>
+	</tr>
+{% endfor %}
+</table>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

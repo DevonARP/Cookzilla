@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+
+<form action="/reviewimages2" method="GET">
+
+	Select review to upload an image of
+	<br>
+	{% for line in sdata %}
+	<input type="radio" name="recipe" value="{{line.recipeID}}" required>Name = {{line.revTitle}} , Stars = {{line.stars}}</input>
+		<br>
+	{% endfor %}
+	<br>
+<input type="submit" value="Upload">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+</body>
+
+
+</html>

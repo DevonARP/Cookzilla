@@ -1,0 +1,33 @@
+<html>
+<head>
+</head>
+<body>
+
+	<h1>Welcome {{username}}</h1> 
+	<br>
+Whose posts would you like to see?
+<br>
+
+<form action="/join_group" method="GET">
+
+
+{% for line in gdata %}
+<input type="radio" name="joingroup" value="{{line.gName}},{{line.gCreator}}" required>Name = {{line.gName}}, Creator = {{line.gCreator}}</input>
+	<br>
+{% endfor %}
+
+<input type="submit" value="Join Group">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

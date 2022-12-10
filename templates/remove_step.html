@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Which step do you want to remove?
+<br>
+
+<form action="/step_edit" method="GET">
+
+	<table>
+        <th>Step Number</th>
+        <th>Description</th>
+
+	{% for line in sdata %}
+	<tr>
+		<td><input type="radio" name="step" value="{{line.stepNo}}" required>{{line.stepNo}}</input></td>
+		<td>{{line.sDesc}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<input type="submit" value="Remove Step">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

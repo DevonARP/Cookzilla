@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Whose group do you want to post an event for?
+<br>
+
+<form action="/create_event" method="GET">
+
+
+{% for line in edata %}
+<input type="radio" name="group" value="{{line.gName}}" required>{{line.gName}}</input>
+	<br>
+{% endfor %}
+<br>
+<input type="text" name = "name" placeholder="name" required/> </br>
+<input type="text" name = "desc" placeholder="description" required/> </br>
+
+<label for="date">Choose a Date and Time:</label>
+<input type="datetime-local" id="date" name="date" required>
+</br>
+
+<input type="submit" value="Post event">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

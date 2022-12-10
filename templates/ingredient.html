@@ -1,0 +1,21 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+<form action="/ingredientAuth" method="POST">
+	<input type="text" name = "name" placeholder="name" required/> </br>
+	<input type="text" name = "link" placeholder="link" required/> </br>
+	<input type="submit" value = Submit />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

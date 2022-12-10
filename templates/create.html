@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+
+	<h1>Welcome {{username}}</h1> 
+
+<form action="/creating" method="POST">
+	<input type="text" name = "gname" placeholder="group name" required/> </br>
+	<input type="text" name = "gdesc" placeholder="group decsription" required/> </br>
+	<input type="submit" value = Create />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/">Logout</a>
+
+</body>
+
+
+</html>

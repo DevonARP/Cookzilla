@@ -1,0 +1,58 @@
+<html>
+<head>
+</head>
+<body>
+
+	<h1>Welcome {{username}}</h1> 
+	<br>
+Which recipe do you want to add an ingredient for?
+<br>
+
+<form action="/add_ingred" method="GET">
+
+
+{% for line in redata %}
+<input type="radio" name="recipe" value="{{line.recipeID}}" required>{{line.title}}</input>
+	<br>
+{% endfor %}
+<br>
+Which ingredients do you want to add?
+<br>
+{% for line in idata %}
+<input type="radio" name="ingred" value="{{line.iName}}" required>{{line.iName}}</input>
+	<br>
+{% endfor %}
+<br>
+<input type="number" min="1" name = "amount" placeholder="amount" required/></br>
+
+<label for="unit">Choose a unit:</label>
+<select name="unit" id="unit">
+  <option value="cup">cup</option>
+  <option value="dash">dash</option>
+  <option value="gallon">gallon</option>
+  <option value="gram">gram</option>
+  <option value="kilogram">kilogram</option>
+  <option value="liter">liter</option>
+  <option value="milliliter">milliliter</option>
+  <option value="ounce">ounce</option>
+  <option value="pint">pint</option>
+  <option value="pound">pound</option>
+  <option value="quart">quart</option>
+  <option value="tablespoon">tablespoon</option>
+  <option value="teaspoon">teaspoon</option>
+</select>
+
+<input type="submit" value="Submit">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

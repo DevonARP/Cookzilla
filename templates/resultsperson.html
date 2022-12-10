@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+
+<form action="/display2" method="GET">
+	<h1>Welcome {{username}}</h1> 
+
+    <style type="text/css">
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+    
+    Here are your results:
+    
+    <table>
+        <th>userName</th>
+        <th>first name</th>
+        <th>last name</th>
+    
+    {% for line in info %}
+        <tr>
+            <td><input type="radio" name="id" value="{{line.userName}}" required>{{line.userName}}</input></td>
+            <td>{{line.fName}}</td>
+            <td>{{line.lName}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <input type="submit" value="Display user">
+    {% if error %}
+    <p class="error"><strong>Error:</strong> {{error}}</p>
+    {% endif %}
+</form>
+
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

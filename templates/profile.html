@@ -1,0 +1,49 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here is your data:
+
+<table>
+	<th>Username</th>
+    <th>first name</th>
+	<th>last name</th>
+    <th>email</th>
+    <th>profile</th>
+
+{% for line in redata %}
+	<tr>
+		<td>{{line.userName}}</td>
+        <td>{{line.fName}}</td>
+        <td>{{line.lName}}</td>
+        <td>{{line.email}}</td>
+        <th>{{line.profile}}</th>
+	</tr>
+{% endfor %}
+</table>
+
+<form action="/profileupdate" method="GET">
+    {% for line in redata %}
+    <input type="text" name = "fname" placeholder="{{line.fName}}" > </br>
+    <input type="text" name = "lname" placeholder="{{line.lName}}" > </br>
+    <input type="text" name = "email" placeholder="{{line.email}}" > </br>
+    <input type="text" name = "profile" placeholder="{{line.profile}}" > </br>
+    {% endfor %}
+<input type="submit" value="Upload">
+</form>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

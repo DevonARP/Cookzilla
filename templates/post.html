@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+ 
+
+<a href="/ingredient">Post an Ingredient</a>
+<br>
+<a href="/recipe">Post a Recipe</a>
+<br>
+<a href="/step">Post a Step</a>
+<br>
+<a href="/recipeingredients">Post ingredients for a recipe</a>
+<br>
+<a href="/recipetags">Post tags for a recipe</a>
+<br>
+<a href="/recipeimages">Post images for a recipe</a>
+<br>
+<a href="/remove">Remove recipe or it's attributes</a>
+<br>
+<a href="/review">Post a Review</a>
+<br>
+<a href="/reviewimages">Post images for a review</a>
+<br>
+<a href="/reviewsearch">See reviews for recipes</a>
+<br>
+<a href="/removereview">Remove a review</a>
+<br>
+<a href="/logout">Logout</a>
+
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</body>
+
+
+</html>

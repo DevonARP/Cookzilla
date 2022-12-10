@@ -1,0 +1,114 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are your recipes:
+
+<table>
+	<th>Recipe</th>
+
+{% for line in rposts %}
+	<tr>
+		<td>{{line.title}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are your Groups:
+
+<table>
+	<th>Group</th>
+
+{% for line in gposts %}
+	<tr>
+		<td>{{line.gName}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+Here are your group's upcoming events:
+
+<table>
+	<th>Name</th>
+	<th>Date</th>
+	<th>Description</th>
+	<th>Group</th>
+
+{% for line in edata %}
+	<tr>
+		<td>{{line.eName}}</td>
+		<td>{{line.eDate}}</td>
+		<td>{{line.eDesc}}</td>
+		<td>{{line.gName}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+Here are the events that RSVP 'Yes':
+
+<table>
+	<th>Name</th>
+	<th>Date</th>
+	<th>Description</th>
+	<th>Group</th>
+
+{% for line in redata %}
+	<tr>
+		<td>{{line.eName}}</td>
+		<td>{{line.eDate}}</td>
+		<td>{{line.eDesc}}</td>
+		<td>{{line.gName}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+Here are the your reviews:
+
+<table>
+	<th>Title</th>
+	<th>Stars</th>
+	<th>Description</th>
+	<th>Recipe</th>
+
+{% for line in viewdata %}
+	<tr>
+		<td>{{line.revTitle}}</td>
+		<td>{{line.stars}}</td>
+		<td>{{line.revDesc}}</td>
+		<td>{{line.recipeID}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+<a href="/search">Search for a Recipe</a>
+<br>
+<a href="/searchperson">Search for a Person</a>
+<br>
+<a href="/post">Recipe, Ingredients, Steps, Tags, and Reviews</a>
+<br>
+<a href="/group">Groups, Events, and RSVP</a>
+<br>
+<a href="/profile">Change profile Info</a>
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

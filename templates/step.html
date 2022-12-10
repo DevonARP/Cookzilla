@@ -1,0 +1,34 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Welcome {{username}}</h1> 
+	<br>
+
+Which recipe do you want to add a step for?
+<br>
+
+<form action="/add_step" method="GET">
+
+
+{% for line in sdata %}
+<input type="radio" name="recipe" value="{{line.recipeID}}" required>{{line.title}}</input>
+	<br>
+{% endfor %}
+<input type="number" min="1" max="20" name = "stepnumber" placeholder="number" required/></br>
+<input type="text" name = "sdesc" placeholder="description" required/></br>
+
+<input type="submit" value="Submit">
+{% if error %}
+<p class="error"><strong>Error:</strong> {{error}}</p>
+{% endif %}
+</form>
+
+
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

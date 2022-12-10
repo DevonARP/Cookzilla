@@ -1,0 +1,91 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here is the recipe info:
+
+<table>
+	<th>Name</th>
+    <th>Creator</th>
+	<th>Servings</th>
+    <th>ID</th>
+
+{% for line in recdata %}
+	<tr>
+		<td>{{line.title}}</td>
+        <td>{{line.postedBy}}</td>
+        <td>{{line.numServings}}</td>
+        <td>{{line.recipeID}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<br>
+
+	Average star rating: {{avgdata}}
+
+<br>
+<br>
+Here are the ingredients:
+
+<table>
+	<th>Name</th>
+    <th>Amount</th>
+	<th>Unit</th>
+    <th>Link</th>
+
+{% for line in indata %}
+	<tr>
+		<td>{{line.iName}}</td>
+        <td>{{line.amount}}</td>
+        <td>{{line.unitName}}</td>
+        <td>{{line.purchaseLink}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+Here are the steps:
+
+<table>
+	<th>Steps</th>
+    <th>Description</th>
+
+{% for line in stdata %}
+	<tr>
+		<td>{{line.stepNo}}</td>
+        <td>{{line.sDesc}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+Here are the recipe tags:
+
+<table>
+	<th>Tags</th>
+
+{% for line in tdata %}
+	<tr>
+		<td>{{line.tagText}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+	{% for line in imdata %}
+		<img src="{{line.pictureURL}}" alt="User Image">
+	{% endfor %}
+	<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Welcome {{username}}</h1> 
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+Here are the reviews:
+
+<table>
+	<th>Name</th>
+    <th>Creator</th>
+	<th>Description</th>
+    <th>Stars</th>
+
+{% for line in sdata %}
+	<tr>
+		<td>{{line.revTitle}}</td>
+        <td>{{line.userName}}</td>
+        <td>{{line.revDesc}}</td>
+        <td>{{line.stars}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+<br>
+	{% for line in imdata %}
+		<img src="{{line.pictureURL}}" alt="User Image">
+	{% endfor %}
+	<br>
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
