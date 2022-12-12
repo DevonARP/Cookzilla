@@ -8,9 +8,9 @@ import bcrypt
 salt = bcrypt.gensalt()
 
 cloudinary.config(
-cloud_name = "",
-api_key = "",
-api_secret = ""
+cloud_name = "drrr3ca5o",
+api_key = "265839145787376",
+api_secret = "CRbhBA4xu-J0htxccVAEPeDtZkg"
 )
 
 app = Flask(__name__)
@@ -389,7 +389,13 @@ def display():
     cursor.execute(query, (recipe))
     avgdata = cursor.fetchall()
     avgdata = avgdata[0]['AVG(stars)']
-    return render_template('display.html', recdata=recipedata, indata=recipeingreddata, tdata=recipetagdata, stdata = stepdata, imdata = imagedata, username=username, revdata = reviewdata, avgdata=avgdata )
+    query = 'SELECT DISTINCT restrictionDesc FROM restrictions INNER JOIN recipeingredient ON restrictions.iName=recipeingredient.iName WHERE recipeID = %s'
+    cursor.execute(query, (recipe))
+    resdata = cursor.fetchall()
+    query = 'SELECT * FROM recipe INNER JOIN relatedrecipe ON recipe.recipeID=relatedrecipe.recipe2 WHERE relatedrecipe.recipe1 = %s'
+    cursor.execute(query, (recipe))
+    reldata = cursor.fetchall()
+    return render_template('display.html', recdata=recipedata, indata=recipeingreddata, tdata=recipetagdata, stdata = stepdata, imdata = imagedata, username=username, revdata = reviewdata, avgdata=avgdata,resdata=resdata,reldata=reldata)
 
 #tags to recipe page
 @app.route('/recipetags', methods=['GET', 'POST'])
@@ -763,6 +769,12 @@ def recipe_edit():
             return render_template('post.html', error=error)
     if id == 'recipe':
         cursor = conn.cursor();
+        query = 'DELETE FROM relatedrecipe WHERE recipe2 = %s'
+        cursor.execute(query, (recipe))
+        conn.commit()
+        query = 'DELETE FROM relatedrecipe WHERE recipe1 = %s'
+        cursor.execute(query, (recipe))
+        conn.commit()
         query = 'DELETE FROM reviewpicture WHERE recipeID = %s'
         cursor.execute(query, (recipe))
         conn.commit()
@@ -1081,6 +1093,95 @@ def remove_review():
     conn.commit()
     cursor.close()
     return redirect(url_for('home'))
+
+@app.route('/restriction', methods=['GET', 'POST'])
+def restriction():
+    username = session['username']
+    cursor = conn.cursor()
+    query = 'SELECT * FROM ingredient'
+    cursor.execute(query)
+    data = cursor.fetchall()
+    error = None
+    if(data):
+        return render_template('restriction.html', sdata=data, error = error)
+    else:
+        error = "There are no ingredient's to choose from."
+        return render_template('post.html', error=error)
+
+@app.route('/add_restriction', methods=['GET', 'POST'])
+def add_restriction():
+    username = session['username']
+    recipe = request.args['recipe']
+    Description = request.args['Description']
+    cursor = conn.cursor()
+    query = 'SELECT * FROM restrictions WHERE iName = %s AND restrictionDesc = %s'
+    cursor.execute(query, (recipe, Description))
+    data = cursor.fetchall()
+    error = None
+    if(data):
+        error = "This restriction for this ingredient already exists."
+        return render_template('post.html', error = error)
+    else:
+        ins = 'INSERT INTO restrictions VALUES(%s, %s)'
+        cursor.execute(ins, (recipe, Description))
+        conn.commit()
+        cursor.close()
+        return redirect(url_for('home'))
+
+@app.route('/related', methods=['GET', 'POST'])
+def related():
+    username = session['username']
+    cursor = conn.cursor();
+    query = 'SELECT * FROM recipe WHERE PostedBy=%s'
+    cursor.execute(query,(username))
+    data = cursor.fetchall()
+    cursor.close()
+    if(data):
+        return render_template('related.html', sdata=data, username=username)
+    else:
+        error="You have no review's to choose from"
+        return render_template('post.html', error=error)
+
+#adding a step page
+@app.route('/similar', methods=['GET', 'POST'])
+def similar():
+    username = session['username']
+    global choosenrecipe
+    recipe = request.args['recipe']
+    choosenrecipe = recipe
+    cursor = conn.cursor()
+    query = 'SELECT * FROM recipe WHERE recipeID!=%s'
+    cursor.execute(query, (recipe))
+    data = cursor.fetchall()
+    cursor.close()
+    if(data):
+        return render_template('choose.html', sdata=data, username=username)
+    else:
+        error="There are no other recipe's to choose from."
+        return render_template('post.html', error=error)
+
+@app.route('/add_similar', methods=['GET', 'POST'])
+def add_similar():
+    username = session['username']
+    recipe = request.args['recipe']
+    cursor = conn.cursor()
+    query = 'SELECT * FROM relatedrecipe WHERE recipe1 = %s AND recipe2 = %s'
+    cursor.execute(query, (choosenrecipe, recipe))
+    data = cursor.fetchall()
+    error = None
+    if(data):
+        error = "These recieps are already marked as similar."
+        return render_template('post.html', error = error)
+    else:
+        ins = 'INSERT INTO relatedrecipe VALUES(%s, %s)'
+        cursor.execute(ins, (choosenrecipe, recipe))
+        conn.commit()
+        ins = 'INSERT INTO relatedrecipe VALUES(%s, %s)'
+        cursor.execute(ins, (recipe, choosenrecipe))
+        conn.commit()
+        cursor.close()
+        return redirect(url_for('home'))
+
 
 app.secret_key = 'some key that you will never guess'
 
