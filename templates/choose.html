@@ -5,19 +5,19 @@
 	<h1>Welcome {{username}}</h1> 
 	<br>
 
-Which tag do you want to remove?
+Which of your recipes is simialr to the recipe you choose?
 <br>
 
-<form action="/tag_edit" method="GET">
+<form action="/add_similar" method="GET">
 
 
 {% for line in sdata %}
-<input type="radio" name="tag" value="{{line.tagText}}" required>{{line.tagText}}</input>
+<input type="radio" name="recipe" value="{{line.recipeID}}" required>Title: {{line.title}}, Creator: {{line.PostedBy}}</input>
 	<br>
 {% endfor %}
 <br>
 
-<input type="submit" value="Remove tag">
+<input type="submit" value="Pick recipe">
 {% if error %}
 <p class="error"><strong>Error:</strong> {{error}}</p>
 {% endif %}

@@ -5,18 +5,18 @@
 
 	<h1>Welcome {{username}}</h1> 
 	<br>
-Which recipe do you want to add a tag for?
+Which ingredient do you want to add a restriction to?
 <br>
 
-<form action="/add_tag" method="GET">
+<form action="/add_restriction" method="GET">
 
 
-{% for line in redata %}
-<input type="radio" name="recipe" value="{{line.recipeID}}" required>{{line.title}}</input>
+{% for line in sdata %}
+<input type="radio" name="recipe" value="{{line.iName}}" required>{{line.iName}}</input>
 	<br>
 {% endfor %}
 <br>
-<input type="text" name = "tag" placeholder="tags" required/></br>
+<input type="text" name = "Description" placeholder="Description" required/></br>
 <br>
 <input type="submit" value="Submit">
 {% if error %}

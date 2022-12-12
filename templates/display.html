@@ -79,6 +79,35 @@ Here are the recipe tags:
 {% endfor %}
 </table>
 <br>
+
+Here are the restrictions:
+
+<table>
+	<th>Restrictions</th>
+
+{% for line in resdata %}
+	<tr>
+		<td>{{line.restrictionDesc}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+Here are related recipes:
+
+<table>
+	<th>Related Recipes</th>
+	<th>Creator</th>
+
+{% for line in reldata %}
+	<tr>
+		<td>{{line.title}}</td>
+		<td>{{line.postedBy}}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+
+
 	{% for line in imdata %}
 		<img src="{{line.pictureURL}}" alt="User Image">
 	{% endfor %}
